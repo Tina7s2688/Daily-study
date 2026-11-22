@@ -528,5 +528,6 @@
     if (e.target.id === "editor" && (e.ctrlKey || e.metaKey) && e.key === "Enter") { e.preventDefault(); runSql(); }
   });
 
+  $("#storage-note").textContent += " 題目來源：" + (window.QUESTION_SOURCE || "本機檔案") + "。";
   route();
 })();
