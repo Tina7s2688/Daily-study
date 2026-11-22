@@ -32,7 +32,7 @@
     console.warn("改用本機題目：", err.message);
     window.QUESTION_SOURCE = "本機檔案";
   }
-  for (const file of ["app.js", "auth.js"]) {
+  for (const file of ["app.js", "auth.js", "sync.js"]) {
     const s = document.createElement("script");
     s.src = file; s.async = false;
     document.body.appendChild(s);

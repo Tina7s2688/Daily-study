@@ -31,6 +31,7 @@
   }
   let state = load();
   function save() {
+    if (window.onProgressSaved) window.onProgressSaved(state); // 登入時同步到雲端（sync.js）
     try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); }
     catch (e) { $("#storage-note").textContent = "這個瀏覽器無法儲存進度（可能是無痕模式），關掉頁面後進度會消失。"; }
   }
@@ -528,6 +529,11 @@
     if (e.target.id === "editor" && (e.ctrlKey || e.metaKey) && e.key === "Enter") { e.preventDefault(); runSql(); }
   });
 
+  // 給 sync.js 用：讀目前進度、換成合併後的進度並重畫畫面
+  window.studyApp = {
+    get: () => state,
+    replace(next) { state = Object.assign(defaultState(), next); save(); renderChips(); route(); },
+  };
   $("#storage-note").textContent += " 題目來源：" + (window.QUESTION_SOURCE || "本機檔案") + "。";
   route();
 })();
