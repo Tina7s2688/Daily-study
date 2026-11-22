@@ -1,6 +1,12 @@
 // 第二階段：先試著從 Supabase 讀題目；讀不到就用 data/listening.js 的題目。
 (async function () {
   const url = window.SUPABASE_URL, key = window.SUPABASE_KEY;
+  // 建立 Supabase 連線（登入要用）。登入信的連結點回來時，網址裡會帶著登入資訊，
+  // getSession() 會把它讀出來存好，並把網址清乾淨，之後 app.js 的換頁才不會被干擾。
+  if (window.supabase && url && key && key.startsWith("sb_")) {
+    window.sb = window.supabase.createClient(url, key);
+    try { await window.sb.auth.getSession(); } catch (e) { console.warn("登入狀態讀取失敗", e); }
+  }
   try {
     if (!url || !key || !key.startsWith("sb_")) throw new Error("還沒設定 key");
     // 一次讀出所有題組，並把每組的題目一起帶出來（Supabase 幫你做 JOIN）
@@ -26,7 +32,9 @@
     console.warn("改用本機題目：", err.message);
     window.QUESTION_SOURCE = "本機檔案";
   }
-  const s = document.createElement("script");
-  s.src = "app.js";
-  document.body.appendChild(s);
+  for (const file of ["app.js", "auth.js"]) {
+    const s = document.createElement("script");
+    s.src = file; s.async = false;
+    document.body.appendChild(s);
+  }
 })();

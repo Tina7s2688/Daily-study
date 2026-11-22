@@ -313,3 +313,11 @@ input[type="date"] { padding: 6px 10px; border: 1px solid var(--line); border-ra
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
 }
+
+/* 登入 */
+.chip-btn { border: 1px solid var(--line); cursor: pointer; font: inherit; }
+.chip-btn:hover { color: var(--fg); }
+.auth-box { margin: 0 0 12px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); display: grid; gap: 8px; }
+.auth-box p { margin: 0; }
+.auth-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.auth-row input { flex: 1 1 200px; min-width: 0; padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--fg); font: inherit; }

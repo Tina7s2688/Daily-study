@@ -16,6 +16,7 @@
       <div class="chips">
         <span class="chip" id="chip-exam">距離多益 — 天</span>
         <span class="chip chip-streak" id="chip-streak">連續 0 天</span>
+        <button class="chip chip-btn" id="auth-btn" type="button" hidden>登入</button>
       </div>
     </div>
     <nav class="wrap tabs" aria-label="主選單">
@@ -24,6 +25,7 @@
       <a href="#sql" data-tab="sql">SQL</a>
       <a href="#progress" data-tab="progress">進度</a>
     </nav>
+    <div class="wrap" id="auth-panel" hidden></div>
   </header>
 
   <main class="wrap">
@@ -39,6 +41,7 @@
 
   <script src="data/listening.js"></script>
   <script src="data/sql-levels.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
   <script src="config.js"></script>
   <script src="db.js"></script>
 </body>
